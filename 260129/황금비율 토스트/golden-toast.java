@@ -20,23 +20,22 @@ public class Main {
         }
 
         for (int i = 0; i < m; i++) {
-            String command = sc.nextLine();
-            if (command.equals("L")) {
+            char command = sc.next().charAt(0);
+            if (command == 'L') {
                 if (iter.hasPrevious()) {
                     iter.previous();
                 }
-            } else if (command.equals("R")) {
+            } else if (command == 'R') {
                 if (iter.hasNext()) {
                     iter.next();
                 }
-            } else if (command.equals("D")) {
+            } else if (command == 'D') {
                 if (iter.hasNext()) {
                     iter.next();
                     iter.remove();
                 }
             } else {
-                String[] input = command.split(" ");
-                char ch = input[1].charAt(0);
+                char ch = sc.next().charAt(0);
                 iter.add(ch);
             }
         }
