@@ -7,7 +7,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
         }
-        int min = 100 * 100;
+        int min = 100 * 100 * 100;
         for (int i = 0; i < n; i++) {
             int distance = 0;
             for (int k = 0; k < n; k++) {
