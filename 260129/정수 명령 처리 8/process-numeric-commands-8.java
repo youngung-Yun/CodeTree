@@ -5,18 +5,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        List<Integer> list = new LinkedList<>();
+        LinkedList<Integer> list = new LinkedList<>();
         for (int i = 0; i < n; i++) {
+            int e;
             String command = sc.next();
             // Please write your code here.
             switch (command) {
                 case "push_front":
-                    int n = sc.nextInt();
-                    list.addFirst(n);
+                    e = sc.nextInt();
+                    list.addFirst(e);
                     break;
                 case "push_back":
-                    int n = sc.nextInt();
-                    list.addLast(n);
+                    e = sc.nextInt();
+                    list.addLast(e);
                     break;
                 case "pop_front":
                     System.out.println(list.pollFirst());
