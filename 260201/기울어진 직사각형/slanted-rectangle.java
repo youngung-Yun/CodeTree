@@ -32,7 +32,7 @@ public class Main {
         int cy = y;
         for (int[] dir : dirs) {
             for (int i = 0; i < k; i++) {
-                if (cx == n - 1 && cy == n - 1) {
+                if (cx == 0 && cy == n - 1) {
                     return 0;
                 }
                 int nx = cx + dir[0];
