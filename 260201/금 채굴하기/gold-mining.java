@@ -17,31 +17,26 @@ public class Main {
             for (int c = 0; c < n; c++) {
                 boolean[][] visited = new boolean[n][n];
                 int goldCount = 0;
-                int income = 0;
                 for (int k = 0; k < n * 2; k++) {
-                    // (k - 1) 일때 계산을 계속 이용함
                     for (int dx = 0; dx <= k; dx++) {
                         int dy = k - dx;
                         for (int[] offset : offsets) {
                             int nx = r + (dx * offset[0]);
                             int ny = c + (dy * offset[1]);
-                            income -= 1;
                             if (nx < 0 || ny < 0 || nx >= n || ny >= n) {
                                 continue;
                             }
-                            // 들른 곳이면 비용 반환
                             if (visited[nx][ny]) {
-                                income += 1;
                                 continue;
                             }
                             visited[nx][ny] = true;
                             if (grid[nx][ny] == 1) {
-                                income += m;
                                 ++goldCount;
                             }
                         }
                     }
-                    if (income >= 0) {
+                    int cost = (k * k) + (k + 1) * (k + 1);
+                    if (cost <= goldCount * m) {
                         answer = Integer.max(answer, goldCount);
                     }
                 }
