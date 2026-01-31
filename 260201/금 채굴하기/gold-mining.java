@@ -18,7 +18,7 @@ public class Main {
                 boolean[][] visited = new boolean[n][n];
                 int goldCount = 0;
                 int income = 0;
-                for (int k = 0; k <= n * 2; k++) {
+                for (int k = 0; k < n * 2; k++) {
                     // (k - 1) 일때 계산을 계속 이용함
                     for (int dx = 0; dx <= k; dx++) {
                         int dy = k - dx;
@@ -41,7 +41,7 @@ public class Main {
                             }
                         }
                     }
-                    if (income > 0) {
+                    if (income >= 0) {
                         answer = Integer.max(answer, goldCount);
                     }
                 }
