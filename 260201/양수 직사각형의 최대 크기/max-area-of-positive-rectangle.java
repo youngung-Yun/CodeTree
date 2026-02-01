@@ -18,7 +18,7 @@ public class Main {
     }
 
     static int findMaxSize() {
-        int max = 0;
+        int max = -1;
         for (int x1 = 0; x1 < n; x1++) {
             for (int y1 = 0; y1 < m; y1++) {
                 for (int x2 = x1; x2 < n; x2++) {
