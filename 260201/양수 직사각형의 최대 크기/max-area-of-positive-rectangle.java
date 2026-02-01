@@ -39,7 +39,7 @@ public class Main {
     static boolean hasNegative(int x1, int y1, int x2, int y2) {
         for (int r = x1; r <= x2; r++) {
             for (int c = y1; c <= y2; c++) {
-                if (grid[r][c] < 0) {
+                if (grid[r][c] <= 0) {
                     return true;
                 }
             }
