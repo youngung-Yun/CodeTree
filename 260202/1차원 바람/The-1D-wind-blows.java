@@ -23,30 +23,28 @@ public class Main {
             }
 
             toRight = !toRight;
-            int[] curr = a[r];
-            int top = r - 1;
-            while (top >= 0 && hasSameElement(curr, a[top])) {
-                if (toRight) {
-                    moveRight(a[top]);
-                } else {
-                    moveLeft(a[top]);
+            for (int k = r - 1; k >= 0; k--) {
+                if (!hasSameElement(a[k], a[k+1])) {
+                    break;
                 }
-                curr = a[top];
-                top -= 1;
+                if (toRight) {
+                    moveRight(a[k]);
+                } else {
+                    moveLeft(a[k]);
+                }
                 toRight = !toRight;
             }
-            
+
             toRight = !(d == 'L');
-            curr = a[r];
-            int bottom = r + 1;
-            while (bottom < n && hasSameElement(curr, a[bottom])) {
-                if (toRight) {
-                    moveRight(a[bottom]);
-                } else {
-                    moveLeft(a[bottom]);
+            for (int k = r + 1; k < n; k++) {
+                if (!hasSameElement(a[k], a[k-1])) {
+                    break;
                 }
-                curr = a[bottom];
-                bottom += 1;
+                if (toRight) {
+                    moveRight(a[k]);
+                } else {
+                    moveLeft(a[k]);
+                }
                 toRight = !toRight;
             }
         }
