@@ -16,14 +16,15 @@ public class Main {
             r -= 1;
             char d = sc.next().charAt(0);
             boolean toRight = d == 'L';
-            int[] curr = a[r];
             if (toRight) {
-                moveRight(curr);
+                moveRight(a[r]);
             } else {
-                moveLeft(curr);
+                moveLeft(a[r]);
             }
+
+            toRight = !toRight;
+            int[] curr = a[r];
             int top = r - 1;
-            boolean direction = !toRight;
             while (top >= 0 && hasSameElement(curr, a[top])) {
                 if (toRight) {
                     moveRight(a[top]);
@@ -32,18 +33,21 @@ public class Main {
                 }
                 curr = a[top];
                 top -= 1;
-                direction = !direction;
+                toRight = !toRight;
             }
+            
+            toRight = !(d == 'L');
             curr = a[r];
             int bottom = r + 1;
             while (bottom < n && hasSameElement(curr, a[bottom])) {
-                if (d == 'L') {
-                    moveLeft(a[bottom]);
+                if (toRight) {
+                    moveRight(a[bottom]);
                 } else {
-                    moveRigh(a[bottom]);
+                    moveLeft(a[bottom]);
                 }
                 curr = a[bottom];
                 bottom += 1;
+                toRight = !toRight;
             }
         }
 
