@@ -17,26 +17,29 @@ public class Main {
             int curr = bombs[0];
             int count = 0;
             int left = 0;
-            int right = bombs.length;
+            boolean explode = false;
             for (int i = 0; i < bombs.length; i++) {
                 if (curr == bombs[i]) {
                     ++count;
                 } else {
                     if (count >= m) {
-                        right = i;
-                        break;
+                        markBombs(left, i);
+                        explode = true;
                     }
                     curr = bombs[i];
                     count = 1;
                     left = i;
                 }
             }
-            // m개 이상 반복된 폭탄이 있으면 터뜨림
             if (count >= m) {
-                explosion(left, right);
-                continue;
+                markBombs(left, bombs.length);
+                explode = true;
             }
-            break;
+            explosion();
+            // 더 이상 터뜨릴 폭탄이 없음
+            if (!explode) {
+                break;
+            }
         }
 
         System.out.println(bombs.length);
@@ -45,17 +48,23 @@ public class Main {
         }
     }
 
-    static void explosion(int start, int end) {
-        int[] tmp = new int[bombs.length - (end - start)];
-        int idx = 0;
-        for (int i = 0; i < bombs.length; i++) {
-            if (idx >= tmp.length) {
-                break;
-            }
-            if (i < start || i >= end) {
-                tmp[idx++] = bombs[i];
+    static void markBombs(int start, int end) {
+        for (int i = start; i < end; i++) {
+            bombs[i] = 0;
+        }
+    }
+
+    static void explosion() {
+        List<Integer> tmp = new ArrayList<>();
+        for (int bomb : bombs) {
+            if (bomb != 0) {
+                tmp.add(bomb);
             }
         }
-        bombs = tmp;
+        int[] result = new int[tmp.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = tmp.get(i);
+        }
+        bombs = result;
     }
 }
