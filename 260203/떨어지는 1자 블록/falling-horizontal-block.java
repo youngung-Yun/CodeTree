@@ -23,7 +23,7 @@ public class Main {
             if (!canDown) {
                 break;
             }
-            ++
+            ++height;
         }
 
         for (int c = k; c < k + m; c++) {
