@@ -5,6 +5,7 @@ public class Main {
     static int[][] grid;
     static int n;
     static int m;
+    static int remain;
 
     static boolean hasExplode;
 
@@ -22,6 +23,9 @@ public class Main {
          * 1. k번동안 터짐 -> 중력 -> 회전 -> 중력
            2. k번 이후는 터질 폭탄이 없을 때까지 계속 터뜨림
         */
+
+        remain = n * n;
+
         for (int c = 0; c < k; c++) {
             explode();
             activateGravity();
@@ -30,13 +34,12 @@ public class Main {
         }
 
         hasExplode = true;
-        while (hasExplode) {
+        while (hasExplode && remain >= m) {
             explode();
             activateGravity();
         }
 
-        int ans = getRemainBombs();
-        System.out.println(ans);
+        System.out.println(remain);
     }
 
     private static void explode() {
@@ -57,6 +60,7 @@ public class Main {
                     if (count >= m) {
                         hasExplode = true;
                         for (int i = start; i < r; i++) {
+                            --remain;
                             grid[i][c] = 0;
                         }
                     }
@@ -68,6 +72,7 @@ public class Main {
             if (count >= m) {
                 hasExplode = true;
                 for (int i = start; i < n; i++) {
+                    --remain;
                     grid[i][c] = 0;
                 }
             }
