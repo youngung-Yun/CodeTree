@@ -4,18 +4,17 @@ public class Main {
     // [x, y, dir]
     static List<int[]> snake = new ArrayList<>();
     final static int[][] dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-    static int[][] apples;
+    static List<int[]> apples = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        apples = new int[m][2];
         int k = sc.nextInt();
         for (int i = 0; i < m; i++) {
             int x = sc.nextInt() - 1;
             int y = sc.nextInt() - 1;
-            apples[i] = new int[] {x, y};
+            apples.add(new int[] {x, y});
         }
         char[][] moves = new char[k][2];
         for (int i = 0; i < k; i++) {
@@ -66,14 +65,12 @@ public class Main {
                 tail[0] = tmp[0];
                 tail[1] = tmp[1];
                 tail[2] = tmp[2];
-
                 moveBody();
                 head[0] = nx;
                 head[1] = ny;
 
                 if (canEatApple(head[0], head[1])) {
-                    int[] newTail = createNewTail(tail);
-                    snake.add(newTail);
+                    snake.add(tail);
                 }
                 if (collideWithBody(head[0], head[1])) {
                     gameover = true;
@@ -99,20 +96,13 @@ public class Main {
     }
 
     static boolean canEatApple(int x, int y) {
-        for (int i = 0; i < apples.length; i++) {
-            if (apples[i][0] == x && apples[i][1] == y) {
+        for (int i = 0; i < apples.size(); i++) {
+            if (apples.get(i)[0] == x && apples.get(i)[1] == y) {
+                apples.remove(i);
                 return true;
             }
         }
         return false;
-    }
-
-    static int[] createNewTail(int[] tail) {
-        int[] newTail = new int[3];
-        newTail[0] = tail[0];
-        newTail[1] = tail[1];
-        newTail[2] = tail[2];
-        return newTail;
     }
 
     static boolean collideWithBody(int x, int y) {
