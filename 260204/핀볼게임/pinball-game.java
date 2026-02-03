@@ -18,8 +18,8 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++) {
-            pinball(i, n - 1, 0);
-            pinball(i , 0, 1);
+            pinball(i, 0, 0);
+            pinball(i, n - 1, 1);
             pinball(n - 1, i, 2);
             pinball(0, i, 3);
         }
@@ -31,20 +31,9 @@ public class Main {
         int elapsed = 0;
         int x = startX;
         int y = startY;
-        int nx = x;
-        int ny = y;
-        while (true) {
+        while (isValid(x, y)) {
             ++elapsed;
-            nx = x + dirs[dir][0];
-            ny = y + dirs[dir][1];
-
-            if (!isValid(nx, ny)) {
-                ++elapsed;
-                ans = Integer.max(ans, elapsed);
-                return;
-            }
-
-            if (grid[nx][ny] == 1) {
+            if (grid[x][y] == 1) {
                 if (dir == 0) {
                     dir = 2;
                 } else if (dir == 1) {
@@ -54,7 +43,7 @@ public class Main {
                 } else if (dir == 3) {
                     dir = 1;
                 }
-            } else if (grid[nx][ny] == 2) {
+            } else if (grid[x][y] == 2) {
                 if (dir == 0) {
                     dir = 3;
                 } else if (dir == 1) {
@@ -65,9 +54,10 @@ public class Main {
                     dir = 0;
                 }
             }
-            x = nx;
-            y = ny;
+            x += dirs[dir][0];
+            y += dirs[dir][1];
         }
+        ans = Integer.max(ans, ++elapsed);
     }
 
     private static boolean isValid(int x, int y) {
