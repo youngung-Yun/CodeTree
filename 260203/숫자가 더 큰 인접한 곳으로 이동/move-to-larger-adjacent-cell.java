@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
 
-    static int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0o}};
+    static int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
