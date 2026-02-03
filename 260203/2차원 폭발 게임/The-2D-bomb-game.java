@@ -27,8 +27,11 @@ public class Main {
         remain = n * n;
 
         for (int c = 0; c < k; c++) {
-            explode();
-            activateGravity();
+            hasExplode = true;
+            while (hasExplode && remain >= m) {
+                explode();
+                activateGravity();
+            }
             rotate();
             activateGravity();
         }
