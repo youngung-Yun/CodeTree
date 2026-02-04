@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+
         int t = Integer.parseInt(bf.readLine());
         for (int i = 0; i < t; i++) {
             StringTokenizer token = new StringTokenizer(bf.readLine());
@@ -27,8 +28,7 @@ public class Main {
                 int dir = mapDirection(token.nextToken());
                 grid[x][y] = dir;
             }
-
-            for (int k = 0; k < 10_000; k++) {
+            for (int k = 0; k < 2 * n; k++) {
                 moveMarbles();
             }
             int ans = getCountMarbles();
@@ -39,6 +39,8 @@ public class Main {
 
     static void moveMarbles() {
         int[][] newMarbles = new int[n+1][n+1];
+        // 위치가 확정되었으면 방문 처리
+        boolean[][] visited = new boolean[n+1][n+1];
         for (int r = 1; r <= n; r++) {
             for (int c = 1; c <= n; c++) {
                 if (grid[r][c] == 0) {
@@ -47,24 +49,22 @@ public class Main {
                 int[] dir = dirs[grid[r][c] - 1];
                 int nx = r + dir[0];
                 int ny = c + dir[1];
+
                 // 이동
                 if (isValid(nx, ny)) {
-                    if (newMarbles[nx][ny] != 0) {
-                        newMarbles[nx][ny] = -1;
+                    if (visited[nx][ny]) {
+                        newMarbles[nx][ny] = 0;
                     } else {
                         newMarbles[nx][ny] = grid[r][c];
+                        visited[nx][ny] = true;
                     }
                 } else {
-                    // 방향만 변경
-                    newMarbles[r][c] = changeDirection(grid[r][c]);
-                }
-            }
-        }
-        // 겹쳐진 구슬 제거
-        for (int r = 1; r <= n; r++) {
-            for (int c = 1; c <= n; c++) {
-                if (newMarbles[r][c] == -1) {
-                    newMarbles[r][c] = 0;
+                    if (visited[r][c]) {
+                        newMarbles[r][c] = 0;
+                    } else {
+                        newMarbles[r][c] =changeDirection(grid[r][c]);
+                        visited[r][c] = true;
+                    }
                 }
             }
         }
