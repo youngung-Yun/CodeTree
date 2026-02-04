@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
 
-    static int[][] dirs = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+    static int[][] dirs = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -30,6 +30,7 @@ public class Main {
                 if (marbles[r][c] != 1) {
                     continue;
                 }
+                marbles[r][c] = 0;
                 int max = 0;
                 int x = r;
                 int y = c;
@@ -45,7 +46,6 @@ public class Main {
                         y = ny;
                     }
                 }
-                marbles[r][c] = 0;
                 marbles[x][y] = 1;
             }
         }
