@@ -28,7 +28,7 @@ public class Main {
                 grid[x][y] = dir;
             }
 
-            for (int k = 0; k < m; k++) {
+            for (int k = 0; k < 10_000; k++) {
                 moveMarbles();
             }
             int ans = getCountMarbles();
