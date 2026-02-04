@@ -1,36 +1,38 @@
 import java.util.Scanner;
 public class Main {
 
-    static int[][] dirs = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
+    static int[][] grid;
+    static int[][] marbles;
+    static int[][] dirs = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
         int t = sc.nextInt();
-        int[][] grid = new int[n][n];
+        grid = new int[n][n];
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 grid[i][j] = sc.nextInt();
-        int[][] marbles = new int[n][n];
+        marbles = new int[n][n];
         for (int i = 0; i < m; i++) {
             int x = sc.nextInt() - 1;
             int y = sc.nextInt() - 1;
             marbles[x][y] = 1;
         }
         for (int i = 0; i < t; i++) {
-            moveMarbles(grid, marbles, n);
+            moveMarbles(n);
         }
-        System.out.println(getCount(marbles));
+        System.out.println(getCount());
     }
 
-    static void moveMarbles(int[][] grid, int[][] marbles, int n) {
+    static void moveMarbles(int n) {
+        int[][] newMarbles = new int[n][n];
         for (int r = 0; r < n; r++) {
             for (int c = 0; c < n; c++) {
                 if (marbles[r][c] != 1) {
                     continue;
                 }
-                marbles[r][c] = 0;
                 int max = 0;
                 int x = r;
                 int y = c;
@@ -46,16 +48,19 @@ public class Main {
                         y = ny;
                     }
                 }
-                marbles[x][y] = 1;
+                newMarbles[x][y] += 1;
             }
         }
+        marbles = newMarbles;
     }
 
-    static int getCount(int[][] matrix) {
+    static int getCount() {
         int total = 0;
-        for (int[] row : matrix) {
+        for (int[] row : marbles) {
             for (int col : row) {
-                total += col;
+                if (col == 1) {
+                    ++total;
+                }
             }
         }
         return total;
