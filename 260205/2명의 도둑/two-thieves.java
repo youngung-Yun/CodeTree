@@ -88,12 +88,12 @@ public class Main {
             return false;
         }
         int bit1 = 0;
-        for (int x = x1; x < x1 + m; x++) {
-            bit1 += (0b1 << x);
+        for (int y = y1; y < y1 + m; y++) {
+            bit1 += (0b1 << y);
         }
         int bit2 = 0;
-        for (int x = x2; x < x2 + m; x++) {
-            bit2 += (0b1 << x);
+        for (int y = y2; y < y2 + m; y++) {
+            bit2 += (0b1 << y);
         }
         return (bit1 & bit2) != 0;
     }
