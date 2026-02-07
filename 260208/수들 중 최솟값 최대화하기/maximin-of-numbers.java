@@ -21,7 +21,7 @@ public class Main {
             }
         }
 
-        dfs(new boolean[n+1], 0, n * n);
+        dfs(new boolean[n+1], 0, 10_000);
         System.out.println(ans);
 
     }
@@ -29,6 +29,7 @@ public class Main {
     static void dfs(boolean[] colVisited, int row, int min) {
         if (row == n) {
             ans = Integer.max(ans, min);
+            return;
         }
 
         for (int col = 0; col < n; col++) {
