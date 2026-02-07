@@ -34,11 +34,11 @@ public class Main {
             return;
         }
 
-        for (int i = start; i <= n; i++) {
+        for (int i = start; i < n; i++) {
             if (depth == 0) {
-                dfs(i, depth + 1, i + 1);
+                dfs(arr[i], depth + 1, i + 1);
             } else {
-                dfs(curr ^ i, depth + 1, i + 1);
+                dfs(curr ^ arr[i], depth + 1, i + 1);
             }
         }
     }
