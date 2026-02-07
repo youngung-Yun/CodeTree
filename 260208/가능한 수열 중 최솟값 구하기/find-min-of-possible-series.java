@@ -1,9 +1,8 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    static int ans = -1;
+    static long ans = -1L;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -15,7 +14,7 @@ public class Main {
     }
 
     static void dfs(int[] arr, int depth, int n) {
-        if (ans != -1) {
+        if (ans != -1L) {
             return;
         }
         if (!isPossibleSequence(arr, depth)) {
@@ -50,10 +49,10 @@ public class Main {
         return true;
     }
 
-    static int arrayToInt(int[] arr) {
-        int num = 0;
+    static long arrayToInt(int[] arr) {
+        long num = 0L;
         for (int digit : arr) {
-            num *= 10;
+            num *= 10L;
             num += digit;
         }
         return num;
