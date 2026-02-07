@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static long ans = -1L;
+    static boolean isEnd = false;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -10,18 +10,22 @@ public class Main {
         // Please write your code here.
 
         dfs(new int[n], 0, n);
-        System.out.println(ans);
     }
 
     static void dfs(int[] arr, int depth, int n) {
-        if (ans != -1L) {
+        if (isEnd) {
             return;
         }
         if (!isPossibleSequence(arr, depth)) {
             return;
         }
         if (depth == n) {
-            ans = arrayToInt(arr);
+            StringBuilder sb = new StringBuilder();
+            for (int e : arr) {
+                sb.append(e);
+            }
+            System.out.println(sb);
+            isEnd = true;
             return;
         }
 
