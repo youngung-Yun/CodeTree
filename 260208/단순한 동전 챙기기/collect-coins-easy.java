@@ -18,7 +18,7 @@ public class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
         n = Integer.parseInt(bf.readLine());
-        ans = n * n;
+        ans = n * n * 10;
         grid = new int[n][n];
 
         boolean[] visited = new boolean[10];
@@ -37,11 +37,11 @@ public class Main {
                 }
             }
         }
-        dfs(visited, 0, new int[3]);
+        dfs(visited, 0, new int[3], 1);
         System.out.println(canReach ? ans : -1);
     }
 
-    static void dfs(boolean[] visited, int depth, int[] arr) {
+    static void dfs(boolean[] visited, int depth, int[] arr, int next) {
         if (depth == 3) {
             int distance = 0;
             int[] curr = start;
@@ -56,13 +56,13 @@ public class Main {
             return;
         }
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = next; i < 10; i++) {
             if (visited[i]) {
                 continue;
             }
             visited[i] = true;
             arr[depth] = i;
-            dfs(visited, depth + 1, arr);
+            dfs(visited, depth + 1, arr, i + 1);
             visited[i] = false;
         }
     }
