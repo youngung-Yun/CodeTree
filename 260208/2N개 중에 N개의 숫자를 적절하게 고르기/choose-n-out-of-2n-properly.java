@@ -21,18 +21,21 @@ public class Main {
             arr[i] = element;
             ans += element;
         }
-        dfs(0, 0, 0);
+        dfs(0, 0, 0, 0, 0);
         System.out.println(ans);
     }
 
-    static void dfs(int groupA, int groupB, int depth) {
+    static void dfs(int groupA, int groupB, int groupACount, int groupBCount, int depth) {
         if (depth == n * 2) {
+            if (groupACount != groupBCount) {
+                return;
+            }
             ans = Integer.min(ans, Math.abs(groupA - groupB));
             return;
         }
 
         int curr = arr[depth];
-        dfs(groupA + curr, groupB, depth + 1);
-        dfs(groupA, groupB + curr, depth + 1);
+        dfs(groupA + curr, groupB, groupACount + 1, groupBCount, depth + 1);
+        dfs(groupA, groupB + curr, groupACount, groupBCount + 1, depth + 1);
     }
 }
