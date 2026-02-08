@@ -21,7 +21,7 @@ public class Main {
         grid = new int[n][m];
         for (int r = 0; r < n; r++) {
             stk = new StringTokenizer(bf.readLine());
-            for (int c = 0; c < n; c++) {
+            for (int c = 0; c < m; c++) {
                 grid[r][c] = Integer.parseInt(stk.nextToken());
             }
         }
