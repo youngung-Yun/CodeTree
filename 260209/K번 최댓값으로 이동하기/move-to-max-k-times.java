@@ -45,8 +45,8 @@ public class Main {
         visited[cx][cy] = true;
 
         int number = 0;
-        int x = n;
-        int y = n;
+        int x = cx;
+        int y = cy;
 
         while (!queue.isEmpty()) {
             int[] curr = queue.remove();
