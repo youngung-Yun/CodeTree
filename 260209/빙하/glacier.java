@@ -73,13 +73,15 @@ public class Main {
         while (!pq.isEmpty()) {
             int[] curr = pq.remove();
 
-            if (curr[2] > maxTime) {
-                maxTime = curr[2];
-                count = 1;
-            } else if (curr[2] == maxTime) {
-                ++count;
+            if (grid[curr[0]][curr[1]] == 1) {
+                if (curr[2] > maxTime) {
+                    maxTime = curr[2];
+                    count = 1;
+                } else if (curr[2] == maxTime) {
+                    ++count;
+                }
             }
-
+            
             for (int i = 0; i < 4; i++) {
                 int nx = curr[0] + dx[i];
                 int ny = curr[1] + dy[i];
