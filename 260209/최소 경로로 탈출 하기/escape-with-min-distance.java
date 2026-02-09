@@ -44,7 +44,7 @@ public class Main {
             for (int i = 0; i < 4; i++) {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
-                if (nx < 0 || ny < 0 || nx >= n || ny >= n) {
+                if (nx < 0 || ny < 0 || nx >= n || ny >= m) {
                     continue;
                 }
                 if (visited[nx][ny] || grid[nx][ny] == 0) {
