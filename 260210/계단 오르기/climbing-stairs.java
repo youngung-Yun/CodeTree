@@ -7,7 +7,7 @@ public class Main {
         int[] dp = new int[1_001];
         dp[2] = dp[3] = 1;
         dp[4] = 2;
-        for (int i = 4; i <= n; i++) {
+        for (int i = 5; i <= n; i++) {
             dp[i] = (dp[i-2] + dp[i-3]) % 10_007;
         }
         System.out.println(dp[n]);
