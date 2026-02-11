@@ -23,7 +23,9 @@ public class Main {
                 if (money - c < 0) {
                     continue;
                 }
-                dp[money] = Integer.max(dp[money], dp[money-c] + 1);
+                if (dp[money-c] != INIT) {
+                    dp[money] = Integer.max(dp[money], dp[money-c] + 1);
+                }
             }
         }
         System.out.println(dp[m]);
