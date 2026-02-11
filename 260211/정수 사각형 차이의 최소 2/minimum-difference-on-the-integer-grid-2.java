@@ -25,9 +25,12 @@ public class Main {
                 } else {
                     int topMax = Integer.max(matrix[r][c], dp[r-1][c][0]);
                     int topMin = Integer.min(matrix[r][c], dp[r-1][c][1]);
+                    int topDiff = topMax - topMin;
                     int leftMax = Integer.max(matrix[r][c], dp[r][c-1][0]);
                     int leftMin = Integer.min(matrix[r][c], dp[r][c-1][1]);
-                    if (topMax - topMin < leftMax - leftMin) {
+                    int leftDiff = leftMax - leftMin;
+
+                    if (topDiff < leftDiff || (topDiff == leftDiff && topMax < leftMax)) {
                         dp[r][c][0] = topMax;
                         dp[r][c][1] = topMin;
                     } else {
