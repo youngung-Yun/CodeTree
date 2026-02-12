@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -14,6 +14,7 @@ public class Main {
             dp[i] = Integer.max(dp[i-1] + nums[i], nums[i]);
         }
 
-        System.out.println(dp[n-1]);
+        int ans = Arrays.stream(dp).max().getAsInt();
+        System.out.println(ans);
     }
 }
