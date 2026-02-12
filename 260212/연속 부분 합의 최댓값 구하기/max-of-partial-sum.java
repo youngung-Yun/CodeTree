@@ -9,7 +9,7 @@ public class Main {
         }
 
         int[] dp = new int[n];
-        dp[0] = Integer.max(nums[0], 0);
+        dp[0] = nums[0];
         for (int i = 1; i < n; i++) {
             dp[i] = Integer.max(dp[i-1] + nums[i], nums[i]);
         }
