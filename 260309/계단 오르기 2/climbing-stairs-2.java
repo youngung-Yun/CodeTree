@@ -13,7 +13,7 @@ public class Main {
         int[][] dp = new int[n][4];
 
         dp[0][0] = coins[0];
-        dp[1][1] = coins[1];
+        dp[1][1] = coins[0] + coins[1];
 
         for (int stair = 2; stair < n; stair++) {
             dp[stair][0] = dp[stair-2][0] + coins[stair];
